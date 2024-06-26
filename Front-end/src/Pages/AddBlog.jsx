@@ -1,5 +1,5 @@
 import { useState } from "react";
-//import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { addBlog } from "../Redux/BlogReducer/BlogSlice";
 import { useDispatch } from "react-redux";
 
@@ -7,7 +7,7 @@ const AddBlog = () => {
   const [image, setImage] = useState(null);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   /* create FormData  */
   const formData = new FormData();
@@ -17,7 +17,7 @@ const AddBlog = () => {
   /* Form Submit API Call */
   const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(addBlog(formData));
+    dispatch(addBlog(formData)).then(()=>navigate('/'));
   };
 
   return (
