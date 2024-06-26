@@ -4,10 +4,10 @@ const mongoose = require("mongoose");
 
 /* Add Blog */
 const addBlog = async (req, res, next) => {
-  const user = await User.findById(req.body.user);
+  /* const user = await User.findById(req.body.user);
   if (!user) {
     return res.status(404).json({ message: "user is not found!" });
-  }
+  } */
   const file = req.file;
   if (!file) {
     return res.send("pleace add file this can't be empty!");
@@ -15,9 +15,8 @@ const addBlog = async (req, res, next) => {
   /* Add image to req.body */
   const fileName = req.file.filename;
   const basePath = `${req.protocol}://${req.get("host")}/public/uploads/`;
-
-  const { title, description, image } = req.body;
-  let existingUser;
+  const { title, description,image } = req.body;
+  /* let existingUser;
   try {
     existingUser = await User.findById(user);
   } catch (error) {
@@ -25,12 +24,11 @@ const addBlog = async (req, res, next) => {
   }
   if (!existingUser) {
     return res.status(400).json({ message: "can't find user by this ID" });
-  }
+  } */
   const blog = new Blog({
     title,
     description,
     image: `${basePath}${fileName}`,
-    user: req.body.user,
   });
   try {
     /* inorder to save the Blog both to blog table and to the user table we use mongo db session */

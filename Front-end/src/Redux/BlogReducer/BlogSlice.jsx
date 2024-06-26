@@ -15,10 +15,9 @@ export const fetchData = createAsyncThunk("Blog/fetchData", async (body) => {
   }
 });
 /* Add Blog Action creator */
-
 export const addBlog = createAsyncThunk("addBlog", async (body) => {
   try {
-    const res = await axios.podt(
+    const res = await axios.post(
       "http://localhost:5000/BlogApi/blogs/addblog",
       body,
       {
