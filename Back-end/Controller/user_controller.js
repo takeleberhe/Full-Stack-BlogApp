@@ -17,7 +17,7 @@ const signup = async (req, res) => {
       .status(400)
       .json({ message: "the user already existes! login instead" });
   }
-  /* it is one way hashing can't decrypted*/
+  /* hashing password it is one way hashing can't decrypted*/
   const hashpassword = bcrypt.hashSync(password);
   const user = new User({
     name,
@@ -50,7 +50,7 @@ const login = async (req, res) => {
       .status(400)
       .json({ message: "invalid credentail try again pleace!" });
   }
-  /* when a user login generate token and send back to user as a credential to access any resource with out login for each service */
+  /* when a user login generate token and send back to user as a credential to access server resources*/
   const token = jwt.sign(
     { id: existingUser._id, isAdmin: existingUser.isAdmin },
     process.env.JWT_SECRET_KEY,
@@ -81,7 +81,6 @@ const getuser = async (req, res) => {
   }
   return res.status(200).json({ user });
 };
-
 /*get All users*/
 const getAllusers = async (req, res) => {
   if (req.user.isAdmin) {
@@ -108,7 +107,6 @@ const deleteUser = async (req, res, next) => {
 };
 
 /* update user */
-
 const updateUser = async (req, res, next) => {
   const { name, email, password } = req.body;
 
@@ -229,8 +227,6 @@ const getUserProfile = async (req, res, next) => {
   // extracted user from Previous middleware or extract it from url using "req.params.id"
   let user;
   // let id = req.params.id from url or id=req.user.id from jwt
-  console.log(req.user.id);
-
   user = await User.findById(req.user.id);
   if (!user) {
     return res.status(400).json({ message: "user not found" });

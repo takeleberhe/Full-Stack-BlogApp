@@ -17,7 +17,6 @@ const verifyToken = async (req, res, next) => {
     next();
   });
 };
-
 /* Authorization for normal user and admin */
 const isAuth = async (req, res, next) => {
   /* acceshe token) by previous object! */
@@ -29,7 +28,6 @@ const isAuth = async (req, res, next) => {
     }
   });
 };
-
 /* Authorization only for Admin */
 const isAdmin = async (req, res, next) => {
   verifyToken(req, res, () => {
