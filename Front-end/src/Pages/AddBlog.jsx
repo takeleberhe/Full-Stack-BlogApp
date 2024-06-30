@@ -28,7 +28,7 @@ const AddBlog = () => {
           className="flex flex-col justify-center items-center"
         >
           <div className="flex flex-col gap-5 m-5 p-5">
-            <div className="mx-[25%]">
+            <div className=" mx-[25%]">
               <label htmlFor="title">Title:</label>
               <input
                 type="text"

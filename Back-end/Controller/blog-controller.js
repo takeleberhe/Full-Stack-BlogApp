@@ -1,13 +1,13 @@
 const Blog = require("./../Model/Blog");
 const User = require("./../Model/User");
 const mongoose = require("mongoose");
-
 /* Add Blog */
 const addBlog = async (req, res, next) => {
   /* const user = await User.findById(req.body.user);
   if (!user) {
     return res.status(404).json({ message: "user is not found!" });
   } */
+  /* Authentication and authorization to add blog */
   const file = req.file;
   if (!file) {
     return res.send("pleace add file this can't be empty!");
@@ -15,7 +15,7 @@ const addBlog = async (req, res, next) => {
   /* Add image to req.body */
   const fileName = req.file.filename;
   const basePath = `${req.protocol}://${req.get("host")}/public/uploads/`;
-  const { title, description,image } = req.body;
+  const { title, description, image } = req.body;
   /* let existingUser;
   try {
     existingUser = await User.findById(user);
@@ -25,26 +25,31 @@ const addBlog = async (req, res, next) => {
   if (!existingUser) {
     return res.status(400).json({ message: "can't find user by this ID" });
   } */
-  const blog = new Blog({
-    title,
-    description,
-    image: `${basePath}${fileName}`,
-  });
-  try {
-    /* inorder to save the Blog both to blog table and to the user table we use mongo db session */
-    /*   const session = await mongoose.startSession();
-    session.startTransaction({ session });
-    await blog.save();
-    existingUser.blogs.push(blog);
-    await existingUser.save({ session }); 
-    await session.commitTransaction();
-    */
-    await blog.save();
-  } catch (error) {
-    return res.status(500).json({ message: error.message });
+  if (req.user._id || req.user.isAdmin) {
+    const blog = new Blog({
+      title,
+      description,
+      image: `${basePath}${fileName}`,
+    });
+    try {
+      /* inorder to save the Blog both to blog table and to the user table we use mongo db session */
+      /*   const session = await mongoose.startSession();
+        session.startTransaction({ session });
+        await blog.save();
+        existingUser.blogs.push(blog);
+        await existingUser.save({ session }); 
+        await session.commitTransaction();
+        */
+      await blog.save();
+    } catch (error) {
+      return res.status(500).json({ message: error.message });
+    }
+    return res.status(201).json({ blog });
+  } else {
+    return res.status(400).json({ message: "you are not authorized!" });
   }
-  return res.status(201).json({ blog });
 };
+
 /*get All blogs*/
 const getAllBlogs = async (req, res, next) => {
   let allBlogs;
@@ -62,22 +67,25 @@ const getAllBlogs = async (req, res, next) => {
 const getBlogById = async (req, res, next) => {
   let id = req.params.id;
   let blog;
-  try {
-    blog = await Blog.findById(id);
-  } catch (error) {
-    return console.log(error);
+  if (req.user._id === req.params.id || req.user.isAdmin) {
+    try {
+      blog = await Blog.findById(id);
+    } catch (error) {
+      return console.log(error);
+    }
+    if (!blog) {
+      return res.status(400).json({ message: "blog not found" });
+    }
+    return res.status(200).json({ blog });
   }
-  if (!blog) {
-    return res.status(400).json({ message: "blog not found" });
-  }
-  return res.status(200).json({ blog });
 };
+
 /* Delete blog */
 const deleteBlog = async (req, res, next) => {
   /* how to delete blog from both the blog table and user table */
-   const id = req.params.id;
-   let blog
-   if(req.user.id===req.params.id||req.user.isAdmin){
+  const id = req.params.id;
+  let blog;
+  if (req.user.id === req.params.id || req.user.isAdmin) {
     try {
       blog = await Blog.findByIdAndRemove(id).populate("user");
       /* remove the blog from the user Array */
@@ -86,8 +94,7 @@ const deleteBlog = async (req, res, next) => {
     } catch (error) {
       return console.log(error);
     }
-   } 
-  else if (!blog) {
+  } else if (!blog) {
     return res.status(500).json({ message: "you can't delete blog" });
   }
   return res.status(200).json({ message: "blog deleted successfully" });

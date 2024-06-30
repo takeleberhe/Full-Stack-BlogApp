@@ -21,7 +21,7 @@ export const addBlog = createAsyncThunk("addBlog", async (body) => {
       "http://localhost:5000/BlogApi/blogs/addblog",
       body,
       {
-        withCredentials: false,
+        withCredentials:true,
       }
     );
     return res;

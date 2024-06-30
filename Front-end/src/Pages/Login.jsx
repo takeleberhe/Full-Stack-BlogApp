@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { SignIn } from "../Redux/AuthReducer/AuthSlice";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 const Login = () => {
@@ -51,6 +51,7 @@ const Login = () => {
               className="p-2 m-2 outline-none rounded-md w-[280px]"
               placeholder="enter password"
             ></input>
+             <h2>You Dont have Acount?<Link to="/signup">Create Acount</Link></h2>
             <button
               className="p-2 m-4 ml-10 w-[200px] rounded-2xl bg-blue-500"
               type="submit"
