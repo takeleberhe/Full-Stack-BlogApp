@@ -51,9 +51,9 @@ const Login = () => {
               className="p-2 m-2 outline-none rounded-md w-[280px]"
               placeholder="enter password"
             ></input>
-             <h2>You Dont have Acount?<Link to="/signup">Create Acount</Link></h2>
+             <h2 className="text-white">You Dont have Acount?<Link to="/signup" className="text-green-900 text-1xl font-bold">Create Acount</Link></h2>
             <button
-              className="p-2 m-4 ml-10 w-[200px] rounded-2xl bg-blue-500"
+              className="p-2 m-4 ml-10 w-[200px] rounded-2xl bg-blue-800"
               type="submit"
             >
               Submit
