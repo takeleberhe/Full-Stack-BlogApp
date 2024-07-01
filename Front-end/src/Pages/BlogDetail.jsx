@@ -26,7 +26,7 @@ const BlogDetail = () => {
       </div>
       <div className="w-80 h-80 rounded-md shadow-md p-5">
         <h2>{data?.title}</h2>
-        <p>{data?.description}</p>
+        <p className="overflow-hidden">{data?.description}</p>
       </div>
     </div>
   );

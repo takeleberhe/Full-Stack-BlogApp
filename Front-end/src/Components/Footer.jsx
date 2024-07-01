@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <>
-      <div className="flex flex-row bg-slate-700 overflow-x-auto">
-        <div className=" flex flex-row items-center w-80 h-60s">
+      <div className=" bg-slate-700 overflow-x-auto">
+        <div className=" grid grid-cols-2 md:grid-cols-3 col-span-3">
           <div className="flex flex-col">
             <h2 className="mt-3 text-2xl text-black-900 hover:text-blue-700 cursor-pointer">About</h2>
             <ul className="w-[400px] h-[200px] text-white mt-2 p-2">
