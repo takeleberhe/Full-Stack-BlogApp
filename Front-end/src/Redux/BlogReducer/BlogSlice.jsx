@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-
 /* Fetch product action creator */
 export const fetchData = createAsyncThunk("Blog/fetchData", async (body) => {
   try {
@@ -21,7 +20,22 @@ export const addBlog = createAsyncThunk("addBlog", async (body) => {
       "http://localhost:5000/BlogApi/blogs/addblog",
       body,
       {
-        withCredentials:true,
+        withCredentials: false,
+      }
+    );
+    return res;
+  } catch (error) {
+    return console.log(error.message);
+  }
+});
+/* Edit Blog Action creator */
+export const updateBlog = createAsyncThunk("updateBlog", async ({body, id}) => {
+  try {
+    const res = await axios.put(
+      `http://localhost:5000/BlogApi/blogs/update/${id}`,
+      body,
+      {
+        withCredentials: false,
       }
     );
     return res;
@@ -30,6 +44,20 @@ export const addBlog = createAsyncThunk("addBlog", async (body) => {
   }
 });
 
+/* Delete Blog  Action creator */
+export const deleteBlog = createAsyncThunk("deleteBlog", async ({ id }) => {
+  try {
+    const res = await axios.get(
+      `http://localhost:5000/BlogApi/blogs/delete/${id}`,
+      {
+        withCredentials: false,
+      }
+    );
+    return res;
+  } catch (error) {
+    return console.log(error.message);
+  }
+});
 export const BlogSlice = createSlice({
   name: "Blog",
   initialState: {
@@ -37,6 +65,8 @@ export const BlogSlice = createSlice({
     data: [],
     error: false,
   },
+  reducers: {},
+  /* Asynchronous Data fetching */
   extraReducers: (builder) => {
     /* Fetch Blog */
     builder.addCase(fetchData.pending, (state) => {
@@ -58,6 +88,34 @@ export const BlogSlice = createSlice({
       state.data = action.payload;
     });
     builder.addCase(addBlog.rejected, (state) => {
+      state.isloading = false;
+    });
+    /* Edit Blog */
+    builder.addCase(updateBlog.pending, (state) => {
+      state.isloading = true;
+    });
+    builder.addCase(updateBlog.fulfilled, (state, action) => {
+      state.isloading = false;
+      state.data = state.data.map((blog) =>
+        blog._id === action.payload.id ? action.payload : blog
+      );
+    });
+    builder.addCase(updateBlog.rejected, (state) => {
+      state.isloading = false;
+    });
+
+    /* Delete  Blog */
+    builder.addCase(deleteBlog.pending, (state) => {
+      state.isloading = true;
+    });
+    builder.addCase(deleteBlog.fulfilled, (state, action) => {
+      state.isloading = false;
+      const id = action.payload;
+      if (id) {
+        state.data = state.data.filter((blog) => blog._id === id);
+      }
+    });
+    builder.addCase(deleteBlog.rejected, (state) => {
       state.isloading = false;
     });
   },

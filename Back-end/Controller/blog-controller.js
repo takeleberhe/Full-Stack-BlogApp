@@ -10,7 +10,7 @@ const addBlog = async (req, res, next) => {
   /* Accessing image from local file */
   const fileName = req.file.filename;
   const basePath = `${req.protocol}://${req.get("host")}/public/uploads/`;
-  const { title, description} = req.body;
+  const { title, description } = req.body;
   const blog = new Blog({
     title,
     description,
@@ -53,21 +53,13 @@ const getBlogById = async (req, res, next) => {
 
 /* Delete blog */
 const deleteBlog = async (req, res, next) => {
-  /* how to delete blog from both the blog table and user table */
   const id = req.params.id;
   let blog;
-  if (req.user.id === req.params.id || req.user.isAdmin) {
     try {
       blog = await Blog.findByIdAndRemove(id).populate("user");
-      /* remove the blog from the user Array */
-      await blog.user.blogs.pull(blog);
-      await blog.user.save();
     } catch (error) {
       return console.log(error);
     }
-  } else if (!blog) {
-    return res.status(500).json({ message: "you can't delete blog" });
-  }
   return res.status(200).json({ message: "blog deleted successfully" });
 };
 /* update blog */
