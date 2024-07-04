@@ -7,24 +7,16 @@ const addBlog = async (req, res, next) => {
   if (!file) {
     return res.send("pleace add file this can't be empty!");
   }
-  /* Add image to req.body */
+  /* Accessing image from local file */
   const fileName = req.file.filename;
   const basePath = `${req.protocol}://${req.get("host")}/public/uploads/`;
-  const { title, description, image } = req.body;
+  const { title, description} = req.body;
   const blog = new Blog({
     title,
     description,
     image: `${basePath}${fileName}`,
   });
   try {
-    /* inorder to save the Blog both to blog table and to the user table we use mongo db session */
-    /*   const session = await mongoose.startSession();
-        session.startTransaction({ session });
-        await blog.save();
-        existingUser.blogs.push(blog);
-        await existingUser.save({ session }); 
-        await session.commitTransaction();
-        */
     await blog.save();
   } catch (error) {
     return res.status(500).json({ message: error.message });
