@@ -1,27 +1,25 @@
+import { useParams, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { updateBlog } from "../Redux/BlogReducer/BlogSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-
+import {updateBlog} from '../Redux/BlogReducer/BlogSlice'
 const EditBlog = () => {
-  const blogs = useSelector((state) => state.blog);
-  const id = useParams();
-  const existingBlog = blogs.filter((blog) => blog._id === id);
-  const { title, description } = existingBlog[0];
+  const { id } = useParams();
+  const blogs =useSelector(state=>state.blog.data)
+  const exitingBlog=blogs?.allBlogs?.filter(blog=>blog._id==id);
+  const {title,description}=exitingBlog[0];
+     
   const [btitle, setTitle] = useState(title);
   const [bdescription, setDescription] = useState(description);
-
   const navigate = useNavigate();
   const dispatch = useDispatch();
   /* create FormData  */
   const formData = new FormData();
-  formData.append("title", title);
-  formData.append("description", description);
+  formData.append("title",btitle);
+  formData.append("description",bdescription);
   /* Form Submit API Call */
   const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(updateBlog(formData, id)).then(() => navigate("/"));
+    dispatch(updateBlog({formData,id})).then(() => navigate("/"));
   };
 
   return (

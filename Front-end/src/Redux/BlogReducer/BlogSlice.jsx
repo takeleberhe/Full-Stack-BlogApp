@@ -29,20 +29,23 @@ export const addBlog = createAsyncThunk("addBlog", async (body) => {
   }
 });
 /* Edit Blog Action creator */
-export const updateBlog = createAsyncThunk("updateBlog", async ({body, id}) => {
-  try {
-    const res = await axios.put(
-      `http://localhost:5000/BlogApi/blogs/update/${id}`,
-      body,
-      {
-        withCredentials: false,
-      }
-    );
-    return res;
-  } catch (error) {
-    return console.log(error.message);
+export const updateBlog = createAsyncThunk(
+  "updateBlog",
+  async ({ body, id }) => {
+    try {
+      const res = await axios.put(
+        `http://localhost:5000/BlogApi/blogs/update/${id}`,
+        body,
+        {
+          withCredentials: false,
+        }
+      );
+      return res;
+    } catch (error) {
+      return console.log(error.message);
+    }
   }
-});
+);
 
 /* Delete Blog  Action creator */
 export const deleteBlog = createAsyncThunk("deleteBlog", async ({ id }) => {
@@ -96,8 +99,8 @@ export const BlogSlice = createSlice({
     });
     builder.addCase(updateBlog.fulfilled, (state, action) => {
       state.isloading = false;
-      state.data = state.data.map((blog) =>
-        blog._id === action.payload.id ? action.payload : blog
+       state.data = state.data.map((blog) =>
+        blog._id === action.payload._id ? action.payload : blog
       );
     });
     builder.addCase(updateBlog.rejected, (state) => {
