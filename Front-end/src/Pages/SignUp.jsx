@@ -70,9 +70,9 @@ const SignUp = () => {
           ></input>
           <button
             type="submit"
-            className="w-[200px] rounded-2xl m-3 ml-8 p-2 bg-blue-500 outline-none"
+            className="w-[150px] rounded-3xl mx-[45%] ml-8 p-2 bg-indigo-700 outline-none hover:bg-green-800"
           >
-            Submit
+            Sign Up
           </button>
         </form>
       </div>

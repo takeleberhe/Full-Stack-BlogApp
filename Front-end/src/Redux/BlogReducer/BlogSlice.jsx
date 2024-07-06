@@ -7,7 +7,7 @@ export const fetchData = createAsyncThunk("Blog/fetchData", async (body) => {
       withCredentials: false,
     });
     const data = await res.data;
-    console.log(data);
+    //console.log(data);
     return data;
   } catch (error) {
     return console.log(error.message);
@@ -31,11 +31,11 @@ export const addBlog = createAsyncThunk("addBlog", async (body) => {
 /* Edit Blog Action creator */
 export const updateBlog = createAsyncThunk(
   "updateBlog",
-  async ({ body, id }) => {
+  async ({ title, description, id }) => {
     try {
       const res = await axios.put(
         `http://localhost:5000/BlogApi/blogs/update/${id}`,
-        body,
+        { body: JSON.stringify(title, description) },
         {
           withCredentials: false,
         }
@@ -99,9 +99,11 @@ export const BlogSlice = createSlice({
     });
     builder.addCase(updateBlog.fulfilled, (state, action) => {
       state.isloading = false;
-       state.data = state.data.map((blog) =>
-        blog._id === action.payload._id ? action.payload : blog
+      //const {title ,description} =action.payload;
+      state.data.allBlogs = state.data.allBlogs.map((bl) =>
+        bl._id === action.payload._id ? action.payload : bl
       );
+      console.log(action.payload);
     });
     builder.addCase(updateBlog.rejected, (state) => {
       state.isloading = false;

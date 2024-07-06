@@ -7,7 +7,6 @@ const Blog = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const data = useSelector((state) => state.blog.data);
-  console.log(data);
   useEffect(() => {
     dispatch(fetchData());
   }, []);

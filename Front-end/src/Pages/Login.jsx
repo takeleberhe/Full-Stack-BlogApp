@@ -53,10 +53,10 @@ const Login = () => {
             ></input>
              <h2 className="text-white">You Dont have Acount?<Link to="/signup" className="text-green-900 text-1xl font-bold">Create Acount</Link></h2>
             <button
-              className="p-2 m-4 ml-10 w-[200px] rounded-2xl bg-blue-800"
+              className="p-2 m-4 ml-10 w-[150px] rounded-3xl bg-indigo-700 hover:bg-green-700"
               type="submit"
             >
-              Submit
+              Login
             </button>
           </div>
         </form>

@@ -1,25 +1,25 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {updateBlog} from '../Redux/BlogReducer/BlogSlice'
+import { updateBlog } from "../Redux/BlogReducer/BlogSlice";
 const EditBlog = () => {
   const { id } = useParams();
-  const blogs =useSelector(state=>state.blog.data)
-  const exitingBlog=blogs?.allBlogs?.filter(blog=>blog._id==id);
-  const {title,description}=exitingBlog[0];
-     
+  const blogs = useSelector((state) => state.blog.data);
+  const exitingBlog = blogs?.allBlogs?.filter((blog) => blog._id == id);
+  const { title, description } = exitingBlog[0];
+
   const [btitle, setTitle] = useState(title);
   const [bdescription, setDescription] = useState(description);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   /* create FormData  */
   const formData = new FormData();
-  formData.append("title",btitle);
-  formData.append("description",bdescription);
+  formData.append("title", btitle);
+  formData.append("description", bdescription);
   /* Form Submit API Call */
   const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(updateBlog({formData,id})).then(() => navigate("/"));
+    dispatch(updateBlog({id,btitle,bdescription})).then(() => navigate("/"));
   };
 
   return (
@@ -41,7 +41,7 @@ const EditBlog = () => {
                 onChange={(e) => setTitle(e.target.value)}
               />
             </div>
-            <div className="row">
+            <div className="">
               <label htmlFor="description">description:</label>
               <textarea
                 type="text"
@@ -53,6 +53,15 @@ const EditBlog = () => {
                 onChange={(e) => setDescription(e.target.value)}
               />
             </div>
+            {/* <div className="mx-[34%] p-2 m-2">
+              <input
+                type="file"
+                className="file"
+                id="file-up"
+                name="image"
+                onChange={(e) => setImage(e.target.files[0])}
+              />
+            </div> */}
             <button
               type="submit"
               className="w-[200px] mx-[35%] rounded-3xl p-3 m-4 bg-blue-600"
