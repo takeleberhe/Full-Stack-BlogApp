@@ -4,18 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateBlog } from "../Redux/BlogReducer/BlogSlice";
 const EditBlog = () => {
   const  {id}  = useParams();
-  /* const exitingBlog = blogs?.allBlogs?.filter((blog) => blog._id == id);
-  const { title, description } = exitingBlog[0];
-
-  const [btitle, setTitle] = useState(title);
-  const [bdescription, setDescription] = useState(description); */
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const initialState = {
     title: "",
     description: "",
   };
-  
   const blogs = useSelector((state) => state.blog.data);
   const [updatedBlog, setUpdatedBlog] = useState(initialState);
   useEffect(() => {
@@ -39,32 +33,20 @@ const EditBlog = () => {
     setUpdatedBlog(initialState);
     navigate("/");
   };
-
-  /*  /* create FormData  
-  const formData = new FormData();
-  formData.append("id", id);
-  formData.append("title", btitle);
-  formData.append("description", bdescription);
-  /* Form Submit API Call 
-  const handleSubmit1 = async (e) => {
-    e.preventDefault();
-    dispatch(updateBlog(id,{btitle,bdescription})).then(() => navigate("/"));
-  }; */
-
   return (
     <>
-      <div className="flex flex-col m-3 p-3 bg-gray-500">
+      <div className="flex flex-col m-3 p-3 bg-transparent">
         <form
           onSubmit={handleSubmit}
-          className="flex flex-col justify-center items-center"
+          className="flex flex-col justify-center items-center bg-indigo-500"
         >
-          <div className="flex flex-col gap-5 m-5 p-5">
-            <div className=" mx-[25%]">
+          <div className="flex flex-col gap-5 m-5 p-5 w-[600px]">
+            <div className=" mx-[15%]">
               <label htmlFor="title">Title:</label>
               <input
                 type="text"
                 name="title"
-                className="p-3 m-3 rounded-xl "
+                className="p-3 m-3 rounded-xl w-[400px] "
                 id="name"
                 value={updatedBlog.title}
                 onChange={newBlog}
@@ -75,27 +57,18 @@ const EditBlog = () => {
               <textarea
                 type="text"
                 name="description"
-                className="p-4 m-4 rounded-xl"
+                className="p-4 m-3 rounded-xl w-[400px]"
                 id="description"
                 rows="5"
                 value={updatedBlog.description}
                 onChange={newBlog}
               />
             </div>
-            {/* <div className="mx-[34%] p-2 m-2">
-              <input
-                type="file"
-                className="file"
-                id="file-up"
-                name="image"
-                onChange={(e) => setImage(e.target.files[0])}
-              />
-            </div> */}
             <button
               type="submit"
-              className="w-[200px] mx-[35%] rounded-3xl p-3 m-4 bg-blue-600"
+              className="w-[200px] mx-[25%] rounded-3xl p-3 m-4 bg-yellow-600"
             >
-              Edit
+              EditBlog
             </button>
           </div>
         </form>

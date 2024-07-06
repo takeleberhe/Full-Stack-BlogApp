@@ -22,36 +22,36 @@ const AddBlog = () => {
 
   return (
     <>
-      <div className="flex flex-col m-3 p-3 bg-gray-500">
+      <div className="flex flex-col m-3 p-3 bg-transparent">
         <form
           onSubmit={handleSubmit}
-          className="flex flex-col justify-center items-center"
+          className="flex flex-col justify-center items-center bg-indigo-500"
         >
-          <div className="flex flex-col gap-5 m-5 p-5">
-            <div className=" mx-[25%]">
+          <div className="flex flex-col gap-5 m-5 p-5 w-[600px]">
+            <div className=" mx-[15%]">
               <label htmlFor="title">Title:</label>
               <input
                 type="text"
                 name="title"
-                className="p-3 m-3 rounded-xl "
+                className="p-3 m-2 rounded-xl w-[400px]"
                 id="name"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
               />
             </div>
             <div className="row">
-              <label htmlFor="description">description:</label>
+              <label htmlFor="description" className="">description:</label>
               <textarea
                 type="text"
                 name="description"
-                className="p-4 m-4 rounded-xl"
+                className="p-4 m-4 rounded-xl w-[400px]"
                 id="description"
                 rows="5"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
               />
             </div>
-            <div className="mx-[34%] p-2 m-2">
+            <div className="mx-[25%] p-2 m-2">
               <input
                 type="file"
                 className="file"
@@ -62,9 +62,9 @@ const AddBlog = () => {
             </div>
             <button
               type="submit"
-              className="w-[200px] mx-[35%] rounded-3xl p-3 m-4 bg-blue-600"
+              className="w-[200px] mx-[30%] rounded-3xl p-3 m-4 bg-yellow-600"
             >
-              Submit
+             AddBlog
             </button>
           </div>
         </form>
