@@ -41,8 +41,8 @@ const EditBlog = () => {
           className="flex flex-col justify-center items-center bg-indigo-500"
         >
           <div className="flex flex-col gap-5 m-5 p-5 w-[600px]">
-            <div className=" mx-[15%]">
-              <label htmlFor="title">Title:</label>
+            <div className=" mx-[8%]">
+              <label htmlFor="title">Title:
               <input
                 type="text"
                 name="title"
@@ -51,9 +51,10 @@ const EditBlog = () => {
                 value={updatedBlog.title}
                 onChange={newBlog}
               />
+              </label>
             </div>
             <div className="">
-              <label htmlFor="description">description:</label>
+              <label htmlFor="description">description:
               <textarea
                 type="text"
                 name="description"
@@ -63,6 +64,7 @@ const EditBlog = () => {
                 value={updatedBlog.description}
                 onChange={newBlog}
               />
+              </label>
             </div>
             <button
               type="submit"
