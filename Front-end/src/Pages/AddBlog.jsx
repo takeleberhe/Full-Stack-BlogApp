@@ -33,7 +33,7 @@ const AddBlog = () => {
               <input
                 type="text"
                 name="title"
-                className="p-3 m-2 rounded-xl w-[400px]"
+                className="p-3 m-2 rounded-xl w-[400px] outline-none"
                 id="name"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
@@ -45,7 +45,7 @@ const AddBlog = () => {
               <textarea
                 type="text"
                 name="description"
-                className="p-5 m-4 rounded-xl w-[400px]"
+                className="p-5 m-4 rounded-xl w-[400px] outline-none"
                 id="description"
                 rows="5"
                 value={description}

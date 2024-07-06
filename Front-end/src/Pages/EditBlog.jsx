@@ -46,7 +46,7 @@ const EditBlog = () => {
               <input
                 type="text"
                 name="title"
-                className="p-3 m-3 rounded-xl w-[400px] "
+                className="p-3 m-3 rounded-xl w-[400px] outline-none "
                 id="name"
                 value={updatedBlog.title}
                 onChange={newBlog}
@@ -58,7 +58,7 @@ const EditBlog = () => {
               <textarea
                 type="text"
                 name="description"
-                className="p-4 m-3 rounded-xl w-[400px]"
+                className="p-4 m-3 rounded-xl w-[400px] outline-none"
                 id="description"
                 rows="5"
                 value={updatedBlog.description}
