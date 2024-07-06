@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 const Login = () => {
-  const { register, handleSubmit } = useForm({ mode: "all" });
+  const { register,formState:{errors}, handleSubmit } = useForm({ mode: "all" });
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -16,13 +16,14 @@ const Login = () => {
 
   return (
     <div>
-      <div className="flex flex-col justify-center items-center">
+      <div className="flex flex-col justify-center items-center bg-transparent">
         <form onSubmit={handleSubmit(handleSingIn)}>
-          <div className="w-80 bg-gray-500 rounded-md m-8 p-4 shadow-lg">
-            <label htmlFor="email">Email:</label>
+          <div className="w-[350px] bg-indigo-800 rounded-md m-8 p-4 shadow-lg">
+            <label htmlFor="email" className="text-white text-xl">Email:</label>
             <input
               type="email"
               name="email"
+               className="p-2 mt-5 outline-none rounded-md w-[300px] "
               {...register("email", {
                 required: "email required",
                 pattern: {
@@ -31,9 +32,10 @@ const Login = () => {
                 },
               })}
               placeholder="enter email"
-              className="p-2 m-2 outline-none rounded-md w-[280px] "
-            ></input>
-            <label htmlFor="password">Password:</label>
+             
+            />
+             <p className="text-red-700 mx-[20%]">{errors.email?.message}</p>
+            <label htmlFor="password" className="text-xl text-white">Password:</label>
             <input
               type="password"
               name="password"
@@ -48,12 +50,13 @@ const Login = () => {
                     "password must be 7-15characters and must include one numeric and one special character",
                 },
               })}
-              className="p-2 m-2 outline-none rounded-md w-[280px]"
+              className="p-2 mt-6 outline-none rounded-md w-[300px]"
               placeholder="enter password"
-            ></input>
-             <h2 className="text-white">You Dont have Acount?<Link to="/signup" className="text-green-900 text-1xl font-bold">Create Acount</Link></h2>
+            />
+             <p className="text-red-700 mx-[20%]">{errors.password?.message}</p>
+             <h2 className="text-yellow-600 mx-[10%]">Dont have Acount?<Link to="/signup" className="text-green-500 text-1xl">Create Acount</Link></h2>
             <button
-              className="p-2 m-4 ml-10 w-[150px] rounded-3xl bg-indigo-700 hover:bg-green-700"
+              className="p-2 m-2 ml-10 w-[150px] mx-[280%] px-[20px] rounded-full bg-green-700 hover:bg-yellow-700"
               type="submit"
             >
               Login

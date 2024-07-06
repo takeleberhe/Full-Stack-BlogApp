@@ -16,7 +16,6 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
-  /* user can have multiple blogs */
   blogs: [
     {
       type: mongoose.Types.ObjectId,

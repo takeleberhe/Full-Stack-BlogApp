@@ -3,7 +3,11 @@ import { signUp } from "../Redux/AuthReducer/AuthSlice";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 const SignUp = () => {
-  const { register, handleSubmit } = useForm({ mode: "all" });
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm({ mode: "all" });
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -13,15 +17,16 @@ const SignUp = () => {
   };
   return (
     <div>
-      <div className=" flex flex-col justify-center items-center">
+      <div className=" flex flex-col justify-center items-center bg-transparent">
         <form
-          className="bg-gray-500 w-[300px] rounded-md p-4 m-6 shadow-lg"
+          className="bg-indigo-800 w-[400px] rounded-lg p-4 m-6 shadow-3xl"
           onSubmit={handleSubmit(handleSignUp)}
         >
-          <label htmlFor="name">Name:</label>
+          <label htmlFor="name" className="text-white text-md">Name:</label>
           <input
             type="text"
             name="name"
+              className="p-2 m-4 outline-none rounded-md w-[300px]"
             {...register("name", {
               required: "username required!",
               minLength: {
@@ -34,13 +39,16 @@ const SignUp = () => {
                 message: "username must be at most 20 characters!",
               },
             })}
-            className="p-2 m-2 outline-none rounded-md w-[250px]"
+          
             placeholder="enter your name"
-          ></input>
-          <label htmlFor="email">Email:</label>
+          />
+          <p className="text-red-700 mx-[20%]"> {errors.name?.message}</p>
+
+          <label htmlFor="email" className="text-white text-md">Email:</label>
           <input
             type="email"
             name="email"
+             className="p-2 m-4 outline-none rounded-md w-[300px]"
             {...register("email", {
               required: "email required",
               pattern: {
@@ -48,13 +56,15 @@ const SignUp = () => {
                 message: "email must be valid",
               },
             })}
-            className="p-2 m-2 outline-none rounded-md w-[250px]"
+           
             placeholder="eneter your email"
-          ></input>
-          <label htmlFor="password">Password:</label>
+          />
+          <p className="text-red-700 mx-[20%]">{errors.email?.message}</p>
+          <label htmlFor="password" className="text-white text-md">Password:</label>
           <input
             type="password"
             name="password"
+            className="p-2 m-4 rounded-md outline-none w-[300px]"
             {...register("password", {
               required: "password required",
               /* To check a password between 7 to 15 characters which contain at 
@@ -65,12 +75,14 @@ const SignUp = () => {
                   "password must be 7-15characters and must include one numeric and one special character",
               },
             })}
-            className="p-2 m-2 rounded-md outline-none w-[250px]"
+            
             placeholder="enter password"
-          ></input>
+          />
+          <p className="text-red-700 mx-[20%]">{errors.password?.message}</p>
+
           <button
             type="submit"
-            className="w-[150px] rounded-3xl mx-[45%] ml-8 p-2 bg-indigo-700 outline-none hover:bg-green-800"
+            className="w-[150px] rounded-3xl mx-[25%] px-[20px] p-2 bg-green-700 outline-none hover:bg-yellow-800"
           >
             Sign Up
           </button>

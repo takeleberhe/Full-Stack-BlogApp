@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchData } from "../Redux/BlogReducer/BlogSlice";
 import { useNavigate } from "react-router-dom";
 
-const Blog = () => {
+const AllBlogs = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const data = useSelector((state) => state.blog.data);
@@ -52,4 +52,4 @@ const Blog = () => {
     </>
   );
 };
-export default Blog;
+export default AllBlogs;

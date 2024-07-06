@@ -12,7 +12,6 @@ const BlogDetail = () => {
       })
       .catch((error) => console.log(error));
     const data = await res.data;
-    console.log(data);
     return data;
   };
   useEffect(() => {

@@ -31,16 +31,18 @@ export const addBlog = createAsyncThunk("addBlog", async (body) => {
 /* Edit Blog Action creator */
 export const updateBlog = createAsyncThunk(
   "updateBlog",
-  async ({ title, description, id }) => {
+  async ({id,...body}) => {
     try {
       const res = await axios.put(
         `http://localhost:5000/BlogApi/blogs/update/${id}`,
-        { body: JSON.stringify(title, description) },
+        body,
         {
           withCredentials: false,
         }
       );
-      return res;
+      const data=await res.data;
+      console.log(data);
+      return data
     } catch (error) {
       return console.log(error.message);
     }
@@ -65,7 +67,7 @@ export const BlogSlice = createSlice({
   name: "Blog",
   initialState: {
     isloading: false,
-    data: [],
+    data:[],
     error: false,
   },
   reducers: {},
@@ -99,11 +101,11 @@ export const BlogSlice = createSlice({
     });
     builder.addCase(updateBlog.fulfilled, (state, action) => {
       state.isloading = false;
-      //const {title ,description} =action.payload;
-      state.data.allBlogs = state.data.allBlogs.map((bl) =>
-        bl._id === action.payload._id ? action.payload : bl
+        //const {title ,description} =action.payload;
+        //state can't update b/c of immutability issue??
+      state.data =state.data.filter((bl) =>
+        bl.id === action.payload.id ?action.payload : bl
       );
-      console.log(action.payload);
     });
     builder.addCase(updateBlog.rejected, (state) => {
       state.isloading = false;

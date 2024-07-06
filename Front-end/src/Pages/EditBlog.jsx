@@ -1,26 +1,55 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateBlog } from "../Redux/BlogReducer/BlogSlice";
 const EditBlog = () => {
-  const { id } = useParams();
-  const blogs = useSelector((state) => state.blog.data);
-  const exitingBlog = blogs?.allBlogs?.filter((blog) => blog._id == id);
+  const  {id}  = useParams();
+  /* const exitingBlog = blogs?.allBlogs?.filter((blog) => blog._id == id);
   const { title, description } = exitingBlog[0];
 
   const [btitle, setTitle] = useState(title);
-  const [bdescription, setDescription] = useState(description);
+  const [bdescription, setDescription] = useState(description); */
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  /* create FormData  */
+  const initialState = {
+    title: "",
+    description: "",
+  };
+  
+  const blogs = useSelector((state) => state.blog.data);
+  const [updatedBlog, setUpdatedBlog] = useState(initialState);
+  useEffect(() => {
+    //retrieving single blog from blog list
+    if (id) {
+      const singleBlog = blogs?.allBlogs?.find((blog) => blog.id === id);
+      console.log(singleBlog);
+      setUpdatedBlog({ ...singleBlog });
+    }
+  }, []);
+  
+  //updating state as user changes input field data
+  const newBlog = (e) => {
+    setUpdatedBlog({ ...updatedBlog, [e.target.name]: e.target.value });
+  };
+  /* handle update function */
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("update blog..", updatedBlog);
+    dispatch(updateBlog({id,...updatedBlog}));
+    setUpdatedBlog(initialState);
+    navigate("/");
+  };
+
+  /*  /* create FormData  
   const formData = new FormData();
+  formData.append("id", id);
   formData.append("title", btitle);
   formData.append("description", bdescription);
-  /* Form Submit API Call */
-  const handleSubmit = async (e) => {
+  /* Form Submit API Call 
+  const handleSubmit1 = async (e) => {
     e.preventDefault();
-    dispatch(updateBlog({id,btitle,bdescription})).then(() => navigate("/"));
-  };
+    dispatch(updateBlog(id,{btitle,bdescription})).then(() => navigate("/"));
+  }; */
 
   return (
     <>
@@ -37,8 +66,8 @@ const EditBlog = () => {
                 name="title"
                 className="p-3 m-3 rounded-xl "
                 id="name"
-                value={btitle}
-                onChange={(e) => setTitle(e.target.value)}
+                value={updatedBlog.title}
+                onChange={newBlog}
               />
             </div>
             <div className="">
@@ -49,8 +78,8 @@ const EditBlog = () => {
                 className="p-4 m-4 rounded-xl"
                 id="description"
                 rows="5"
-                value={bdescription}
-                onChange={(e) => setDescription(e.target.value)}
+                value={updatedBlog.description}
+                onChange={newBlog}
               />
             </div>
             {/* <div className="mx-[34%] p-2 m-2">

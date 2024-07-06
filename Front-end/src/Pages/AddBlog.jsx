@@ -17,7 +17,7 @@ const AddBlog = () => {
   /* Form Submit API Call */
   const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(addBlog(formData)).then(()=>navigate('/'));
+    dispatch(addBlog(formData)).then(() => navigate("/"));
   };
 
   return (
