@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
-const Navbar = ({ user }) => {
+const Navbar = ({ user,logout }) => {
+  //const {user} =useSelector((state)=>state.user)
+  
   return (
     <>
       <div className="flex flex-auto justify-around  w-full p-2 bg-black">
@@ -40,7 +42,10 @@ const Navbar = ({ user }) => {
             </button>
           )}
           {user && (
-            <button className=" text-white p-2 bg-slate-600 hover:bg-green-700 rounded-full">
+            <button className=" text-white p-2 bg-slate-600
+             hover:bg-green-700 rounded-full"
+              onClick={()=>logout()}
+             >
               <Link to="/logout" className="p-2 text-white">
                 logout
               </Link>

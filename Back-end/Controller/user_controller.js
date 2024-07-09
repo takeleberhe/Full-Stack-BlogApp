@@ -195,15 +195,14 @@ const logout = async (req, res, next) => {
   if (!oldToken) {
     return res.status(400).json({ message: "token coud't find!" });
   }
-
   /*verify token!*/
   jwt.verify(String(oldToken), process.env.JWT_VERIFY_KEY, (err, user) => {
     if (err) {
       console.log(err);
       return res.status(403).json({ message: " authentication failed! " });
     }
-    res.clearCookie("${user._id}");
-    req.cookies["${user._id}"] = "";
+    res.clearCookie("${user._id}"); //clear cookie from browser
+    req.cookies["${user._id}"] = "";//clear cookie from the header
     return res
       .status(200)
       .json({ message: "you are successfully logged out!" });

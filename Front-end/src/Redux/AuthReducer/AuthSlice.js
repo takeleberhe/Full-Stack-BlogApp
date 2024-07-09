@@ -23,7 +23,6 @@ export const SignIn = createAsyncThunk("Auth/SignIn", async (body) => {
   );
   return res;
 });
-
 export const AuthSlice = createSlice({
   name: "Auth",
   initialState: {

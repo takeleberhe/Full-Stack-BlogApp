@@ -11,7 +11,6 @@ const {
   updateUserProfile,
   getUserProfile,
 } = require("../Controller/user_controller");
-//const {userProfile}=require("../Controller/profile_controller")
 const {
   verifyToken,
   isAdmin,
@@ -19,11 +18,6 @@ const {
 } = require("../Middlewares/authMiddleware");
 
 const userRouter = express.Router();
-
-/* Authentication and Authentication methods
-1:isAuth? it user +Admin are Allowed to access or manipulate the resource
-2:isAdmin? it is amiddlware to authorize only Admin can Access and manipulate the resources
- */
 // route api
 userRouter.post("/signup", signup);
 userRouter.post("/login", login);
