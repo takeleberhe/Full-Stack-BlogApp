@@ -7,7 +7,7 @@ export const signUp = createAsyncThunk("auth/signUp", async (body) => {
     "http://localhost:5000/BlogApi/users/signup",
     body,
     {
-      withCredentials: false,
+      withCredentials: true,
     }
   );
   return res;
@@ -18,7 +18,7 @@ export const SignIn = createAsyncThunk("Auth/SignIn", async (body) => {
     "http://localhost:5000/BlogApi/users/login",
     body,
     {
-      withCredentials: false,
+      withCredentials: true,
     }
   );
   return res;
@@ -33,13 +33,6 @@ export const AuthSlice = createSlice({
   },
   /* add reducers  */
   reducers: {
-    adduser: (state) => {
-      state.user = localStorage.getItem("user");
-    },
-    logout: (state) => {
-      state.token = null;
-      localStorage.clear();
-    },
   },
   /* add extra reducers for asynchrounous data fetching */
   extraReducers: (builder) => {

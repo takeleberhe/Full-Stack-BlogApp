@@ -3,7 +3,7 @@ const User = require("../Model/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const signup = async (req, res) => {
-  const { name, email, password} = req.body;
+  const { name, email, password } = req.body;
   let existingUser;
   try {
     existingUser = await User.findOne({ email: email });
@@ -171,7 +171,6 @@ const logout = async (req, res, next) => {
   if (!oldToken) {
     return res.status(400).json({ message: "token coud't find!" });
   }
-
   /*verify token!*/
   jwt.verify(String(oldToken), process.env.JWT_VERIFY_KEY, (err, user) => {
     if (err) {
@@ -185,7 +184,6 @@ const logout = async (req, res, next) => {
       .json({ message: "you are successfully logged out!" });
   });
 };
-
 /* update user profile */
 const updateUserProfile = async (req, res, next) => {
   let user = await User.findById(req.user.id);
@@ -208,7 +206,6 @@ const updateUserProfile = async (req, res, next) => {
     res.status(404).json("user not found");
   }
 };
-
 /* Get User Profile */
 const getUserProfile = async (req, res, next) => {
   let user;

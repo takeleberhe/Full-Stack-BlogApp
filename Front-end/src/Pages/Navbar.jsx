@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
-const Navbar = () => {
+const Navbar = ({ user }) => {
   return (
     <>
       <div className="flex flex-auto justify-around  w-full p-2 bg-black">
         <div className="">
-          <h2 className="text-3xl text-start text-blue-800 from-neutral-900 font-bold"
-          ><Link to="/">TechBlog</Link></h2>
+          <h2 className="text-3xl text-start text-blue-800 from-neutral-900 font-bold">
+            <Link to="/">TechBlog</Link>
+          </h2>
         </div>
         <div>
           <ul className="flex justify-normal">
@@ -30,11 +31,21 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="flex flex-row justify-end">
-          <button className=" text-white p-2 bg-slate-600 hover:bg-green-700 rounded-full">
-            <Link to="/login" className="p-2 text-white">
-              Login
-            </Link>
-          </button>
+          <p className="text-white p-2 m-2">{user?.user?.name}</p>
+          {!user && (
+            <button className=" text-white p-2 bg-indigo-700 hover:bg-green-700 rounded-full">
+              <Link to="/login" className="p-2 text-white">
+                Login
+              </Link>
+            </button>
+          )}
+          {user && (
+            <button className=" text-white p-2 bg-slate-600 hover:bg-green-700 rounded-full">
+              <Link to="/logout" className="p-2 text-white">
+                logout
+              </Link>
+            </button>
+          )}
         </div>
       </div>
     </>

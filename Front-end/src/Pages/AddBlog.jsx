@@ -64,7 +64,7 @@ const AddBlog = () => {
             </div>
             <button
               type="submit"
-              className="w-[200px] mx-[30%] rounded-3xl p-3 m-4 bg-yellow-600"
+              className="w-[200px] mx-[30%] rounded-3xl p-3 m-4 bg-yellow-600 hover:bg-green-500"
             >
              AddBlog
             </button>
