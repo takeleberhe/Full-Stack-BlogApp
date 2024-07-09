@@ -25,8 +25,8 @@ const getUserCredentials=async()=>{
     setUser(userprofile.data.name);
     //set the data also to local Storage and used to keep logged in on page refresh. 
     localStorage.setItem("userprofile", JSON.stringify(userprofile.data)); */
-     console.log(userprofile)
-    const data=await userprofile.data
+     console.log(userprofile.name)
+    const data=await userprofile
     return data;
    }
    useEffect(()=>{
