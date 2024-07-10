@@ -37,7 +37,6 @@ const Header = () => {
        }).then(()=>navigate('/'))
        localStorage.removeItem("userprofile");
        setUser(null);
-       navigate('/login')
   }
   useEffect(()=>{
    LogoutAPI();

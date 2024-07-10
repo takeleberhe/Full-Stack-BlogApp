@@ -42,12 +42,12 @@ const Navbar = ({ user,logout }) => {
             </button>
           )}
           {user && (
-            <button className=" text-white p-2 bg-slate-600
+            <button className=" text-white p-2 bg-indigo-700
              hover:bg-green-700 rounded-full"
               onClick={()=>logout()}
              >
               <Link to="/logout" className="p-2 text-white">
-                logout
+                Logout
               </Link>
             </button>
           )}

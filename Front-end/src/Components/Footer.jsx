@@ -6,8 +6,8 @@ const Footer = () => {
       <div className="pt-5">
                 <h2 className="text-center text-white text-2xl ">Join us</h2>
               <div className="pt-5 mt-5">
-                 <input className="width-[500px] p-3 outline-none ml-[40%]" type="text" placeholder="enter your email"/>
-                  <button className="w-[80px] p-3 text-white bg-indigo-500 hover:bg-green-500">Subscribe</button>
+                 <input className="width-[500px] p-2 outline-none " type="text" placeholder="enter your email"/>
+                  <button className="w-[80px] p-2 text-white bg-indigo-500 hover:bg-green-500">Subscribe</button>
               </div>
           </div>
         <div className=" grid grid-cols-2 md:grid-cols-3 col-span-3 lg:grid-cols-4">
