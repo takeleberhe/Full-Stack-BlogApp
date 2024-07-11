@@ -28,7 +28,6 @@ const EditBlog = () => {
   /* handle update function */
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("update blog..", updatedBlog);
     dispatch(updateBlog({id,...updatedBlog}));
     setUpdatedBlog(initialState);
     navigate("/");

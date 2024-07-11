@@ -3,13 +3,19 @@ const Footer = () => {
   return (
     <>
       <div className=" bg-black overflow-x-auto">
-      <div className="pt-5">
-                <h2 className="text-center text-white text-2xl ">Join us</h2>
-              <div className="pt-5 mt-5">
-                 <input className="width-[500px] p-2 outline-none " type="text" placeholder="enter your email"/>
-                  <button className="w-[80px] p-2 text-white bg-indigo-500 hover:bg-green-500">Subscribe</button>
-              </div>
+        <div className="pt-5">
+          <h2 className="text-center text-white text-2xl ">Join us</h2>
+          <div className="pt-5 mt-5">
+            <input
+              className="width-[500px] p-2 outline-none "
+              type="text"
+              placeholder="enter your email"
+            />
+            <button className="w-[80px] p-2 text-white bg-indigo-500 hover:bg-green-500">
+              Subscribe
+            </button>
           </div>
+        </div>
         <div className=" grid grid-cols-2 md:grid-cols-3 col-span-3 lg:grid-cols-4">
           <div className="flex flex-col">
             <h2 className="mt-3 text-2xl text-black-900 hover:text-blue-700 cursor-pointer text-white">
