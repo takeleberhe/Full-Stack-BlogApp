@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
-import Navbar from "../Pages/Navbar";
+//import Navbar from "../Pages/Navbar";
+//import NavbarTest from "../Pages/NavbarTest";
+import Navbar from "../Pages/Navbar"
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 axios.withCredentials = true;
@@ -13,7 +15,7 @@ const Header = () => {
       return null;
     }
   });
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   /* get user profile Api call second method*/
   const getUserCredentials = async () => {
     const userprofile = await axios.get(
@@ -31,16 +33,18 @@ const Header = () => {
     getUserCredentials();
   }, []);
   /* Logout API Call */
-  const LogoutAPI=async()=>{
-       await axios.get('http://localhost:5000/BlogApi/users/logout',{
-        withCredentials:true
-       }).then(()=>navigate('/'))
-       localStorage.removeItem("userprofile");
-       setUser(null);
-  }
-  useEffect(()=>{
-   LogoutAPI();
-  },[])
+  const LogoutAPI = async () => {
+    await axios
+      .get("http://localhost:5000/BlogApi/users/logout", {
+        withCredentials: true,
+      })
+      .then(() => navigate("/"));
+    localStorage.removeItem("userprofile");
+    setUser(null);
+  };
+  useEffect(() => {
+    LogoutAPI();
+  }, []);
 
   return (
     <div>
@@ -48,5 +52,4 @@ const Header = () => {
     </div>
   );
 };
-
 export default Header;

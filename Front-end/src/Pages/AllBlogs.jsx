@@ -16,7 +16,7 @@ const AllBlogs = () => {
         <>
           <div
             key={blog._id}
-            className="grid grid-cols-1 md:grid-cols-2 rounded-lg shadow-md relative"
+            className="grid grid-cols-1 md:grid-cols-2 rounded-lg shadow-md relative mt-35"
           >
             <div className="rounded-md p-3 m-3 cursor-pointer">
               <img

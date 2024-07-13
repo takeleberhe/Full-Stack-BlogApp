@@ -10,13 +10,15 @@ import DeleteBlog from "../Pages/DeleteBlog";
 const PageRouter = () => {
   return (
     <Routes>
+        {/* Blog Routes */}
       <Route path="/" element={<AllBlogs />} />
       <Route path="/blog-detail/:id" element={<BlogDetail />} />
-      <Route path="/signup" element={<SignUp />} />
-      <Route path="/login" element={<Login />} />
       <Route path="/addblog" element={<AddBlog />} />
       <Route path="/editblog/:id" element={<EditBlog />} />
       <Route path="/deleteblog/:id" element={<DeleteBlog />} />
+          {/* user Routes */}
+      <Route path="/signup" element={<SignUp />} />
+      <Route path="/login" element={<Login />} />
     </Routes>
   );
 };

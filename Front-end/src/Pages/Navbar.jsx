@@ -1,60 +1,76 @@
+import { useState } from "react";
+import { AiOutlineRead } from "react-icons/ai";
+import { GiHamburgerMenu } from "react-icons/gi";
+import { IoClose } from "react-icons/io5";
 import { Link } from "react-router-dom";
-const Navbar = ({ user, logout }) => {
-  //const {Auth} =useSelector((state)=>state.user)
+
+const Header = ({ user, logout }) => {
+  let Links = [
+    { name: "HOME", link: "/" },
+    { name: "SERVICE", link: "/service" },
+    { name: "ABOUT", link: "/about" },
+    { name: "CONTACT", link: "/contact" },
+  ];
+  let [open, setOpen] = useState(false);
+
   return (
-    <>
-      <div className="flex flex-auto justify-around  w-full p-2 bg-black">
-        <div className="">
-          <h2 className="text-3xl text-start text-blue-800 from-neutral-900 font-bold">
-            <Link to="/">TechBlog</Link>
-          </h2>
+    <div className="shadow-md w-full top-0 left-0 sticky z-[20]">
+      <div className="md:flex items-center justify-between bg-white py-4 md:px-10 px-7">
+        {/* logo section */}
+        <div className="font-bold text-2xl cursor-pointer flex items-center gap-1">
+          <Link to="/">
+            <AiOutlineRead className="w-7 h-7 text-blue-600" />
+          </Link>
         </div>
-        <div className="hidden sm:flex flex-row">
-          <ul className="flex justify-normal">
-            <li className="m-2 text-white">
-              <Link to="/">Home</Link>
-            </li>
-            <li className="m-2 text-white">
-              <Link to="/addblog">AddBlog</Link>
-            </li>
-            <li className="m-2 text-white">
-              <Link to="/services">Services</Link>
-            </li>
-            <li className="m-2 text-white">
-              <Link to="/news">News</Link>
-            </li>{" "}
-            <li className="m-2 text-white">
-              <Link to="/about">About</Link>
-            </li>{" "}
-            <li className="m-2 text-white">
-              <Link to="/contact">Contact</Link>
-            </li>
-          </ul>
+        {/* Menu icon */}
+        <div
+          onClick={() => setOpen(!open)}
+          className="absolute right-8 top-6 cursor-pointer md:hidden w-7 h-7"
+        >
+          {open ? <IoClose /> : <GiHamburgerMenu />}
         </div>
-        <div className="flex flex-row justify-end">
-          <p className="text-white p-2 m-2">{user?.user?.name}</p>
-          {!user && (
-            <button className=" text-white p-2 bg-indigo-700 hover:bg-green-700 rounded-full">
-              <Link to="/login" className="p-2 text-white">
-                Login
-              </Link>
-            </button>
-          )}
-          {user && (
-            <button
-              className=" text-white p-2 bg-indigo-700
+        {/* linke items */}
+        <ul
+          className={`md:flex md:items-center md:pb-0 pb-12 absolute md:static bg-white md:z-auto z-[-1] left-0 w-full md:w-auto md:pl-0 pl-9 transition-all duration-500 ease-in ${
+            open ? "top-12" : "top-[-490px]"
+          }`}
+        >
+          {Links.map((link, index) => (
+            <div key={index}>
+              <li className="md:ml-8 md:my-0 my-7 font-semibold">
+                <a
+                  href={link.link}
+                  className="text-gray-800 hover:text-blue-400 duration-500"
+                >
+                  {link.name}
+                </a>
+              </li>
+            </div>
+          ))}
+          <div>
+            {!user && (
+              <button className=" text-white p-2 ml-6 bg-indigo-700 hover:bg-green-700 rounded-full">
+                <Link to="/login" className="p-2 text-white">
+                  Login
+                </Link>
+              </button>
+            )}
+            {user && (
+              <button
+                className=" text-white p-2 bg-indigo-700
              hover:bg-green-700 rounded-full"
-              onClick={() => logout()}
-            >
-              <Link to="/logout" className="p-2 text-white">
-                Logout
-              </Link>
-            </button>
-          )}
-        </div>
+                onClick={() => logout()}
+              >
+                <Link to="/logout" className="p-2 text-white">
+                  Logout
+                </Link>
+              </button>
+            )}
+          </div>
+        </ul>
       </div>
-    </>
+    </div>
   );
 };
 
-export default Navbar;
+export default Header;

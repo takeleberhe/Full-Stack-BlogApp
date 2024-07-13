@@ -101,8 +101,6 @@ export const BlogSlice = createSlice({
     });
     builder.addCase(updateBlog.fulfilled, (state, action) => {
       state.isloading = false;
-        //const {title ,description} =action.payload;
-        //state can't update b/c of immutability issue??
       state.data =state.data.filter((bl) =>
         bl.id === action.payload.id ?action.payload : bl
       );

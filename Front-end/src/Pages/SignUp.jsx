@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import { signUp } from "../Redux/AuthReducer/AuthSlice";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+
 const SignUp = () => {
   const {
     register,
