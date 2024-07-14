@@ -3,8 +3,9 @@ import { AiOutlineRead } from "react-icons/ai";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoClose } from "react-icons/io5";
 import { Link } from "react-router-dom";
-
-const Header = ({ user, logout }) => {
+  
+const Navbar = ({ user, logout }) => {
+      console.log(user);
   let Links = [
     { name: "HOME", link: "/" },
     { name: "ADBLOG", link: "/addblog" },
@@ -50,7 +51,7 @@ const Header = ({ user, logout }) => {
           ))}
           <div>
             {!user && (
-              <button className=" text-white p-2 ml-6 bg-indigo-700 hover:bg-green-700 rounded-full">
+              <button className=" text-white p-2 ml-[-15px] md:ml-[15px] bg-indigo-700 hover:bg-green-700 rounded-full">
                 <Link to="/login" className="p-2 text-white">
                   Login
                 </Link>
@@ -58,7 +59,7 @@ const Header = ({ user, logout }) => {
             )}
             {user && (
               <button
-                className=" text-white p-2 bg-indigo-700
+                className=" text-white p-2 ml-[-15px] md:ml-[15px] bg-indigo-700
              hover:bg-green-700 rounded-full"
                 onClick={() => logout()}
               >
@@ -74,4 +75,4 @@ const Header = ({ user, logout }) => {
   );
 };
 
-export default Header;
+export default Navbar;
