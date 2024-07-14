@@ -5,7 +5,6 @@ import { IoClose } from "react-icons/io5";
 import { Link } from "react-router-dom";
   
 const Navbar = ({ user, logout }) => {
-      console.log(user);
   let Links = [
     { name: "HOME", link: "/" },
     { name: "ADBLOG", link: "/addblog" },
@@ -40,12 +39,12 @@ const Navbar = ({ user, logout }) => {
           {Links.map((link, index) => (
             <div key={index}>
               <li className="md:ml-8 md:my-0 my-7 font-semibold">
-                <a
-                  href={link.link}
+                <Link
+                  to={link.link}
                   className="text-gray-800 hover:text-blue-400 duration-500"
                 >
                   {link.name}
-                </a>
+                </Link>
               </li>
             </div>
           ))}
