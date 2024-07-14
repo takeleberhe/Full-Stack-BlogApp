@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 const Header = ({ user, logout }) => {
   let Links = [
     { name: "HOME", link: "/" },
+    { name: "ADBLOG", link: "/addblog" },
     { name: "SERVICE", link: "/service" },
     { name: "ABOUT", link: "/about" },
     { name: "CONTACT", link: "/contact" },

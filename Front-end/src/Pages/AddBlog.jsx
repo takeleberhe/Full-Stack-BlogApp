@@ -22,36 +22,38 @@ const AddBlog = () => {
 
   return (
     <>
-      <div className="flex flex-col m-3 p-3 bg-transparent">
+      <div className="md:flex flex-col m-3 p-3 bg-transparent">
         <form
           onSubmit={handleSubmit}
-          className="flex flex-col justify-center items-center bg-indigo-500"
+          className="md:flex flex-col justify-center items-center bg-indigo-500"
         >
-          <div className="flex flex-col gap-5 m-5 p-5 w-[700px]">
-            <div className=" mx-[8%] w-[600px]">
-              <label htmlFor="title">Title:
+          <div className="w-80 md:flex flex-col gap-5 m-5 p-5">
+            <div className="md:mx-[8%] w-[600px]">
+              <label htmlFor="title" className="px-[-40px]">
+                Title:
+              </label>
               <input
                 type="text"
                 name="title"
-                className="p-3 m-2 rounded-xl w-[400px] outline-none"
+                className="p-2 w-80 mx-[-40px]md:p-2 rounded-md outline-none"
                 id="name"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
               />
-              </label>
             </div>
             <div className="">
-              <label htmlFor="description" className="">description:
+              <label htmlFor="description" className="px-[-10px]">
+                description:{" "}
+              </label>
               <textarea
                 type="text"
                 name="description"
-                className="p-5 m-4 rounded-xl w-[400px] outline-none"
+                className="w-80 h-60 md:p-5 m-4 rounded-md outline-none"
                 id="description"
                 rows="5"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
               />
-              </label>
             </div>
             <div className="mx-[25%] p-2 m-2">
               <input
@@ -66,7 +68,7 @@ const AddBlog = () => {
               type="submit"
               className="w-[200px] mx-[30%] rounded-3xl p-3 m-4 bg-yellow-600 hover:bg-green-500"
             >
-             AddBlog
+              AddBlog
             </button>
           </div>
         </form>

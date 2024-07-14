@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchData } from "../Redux/BlogReducer/BlogSlice";
+import { MdDelete } from "react-icons/md";
+import { CiEdit } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
 
 const AllBlogs = () => {
@@ -35,16 +37,16 @@ const AllBlogs = () => {
               </p>
             </div>
             <button
-              className="text-blue-600 absolute top-0 right-12"
+              className="text-blue-600 absolute top-0 right-5"
               onClick={() => navigate(`/editblog/${blog._id}`)}
             >
-              Edit
+             <CiEdit className="h-5 w-5"/>
             </button>
             <button
               className="text-red-700 absolute top-0 right-0"
               onClick={() => navigate(`deleteblog/${blog._id}`)}
             >
-              Delete
+             <MdDelete className="h-5 w-5" />
             </button>
           </div>
         </>

@@ -19,13 +19,13 @@ const BlogDetail = () => {
   }, []);
 
   return (
-    <div className="flex flex-col m-5 p-5 mx-[35%]">
-      <div className="w-80 h-80 rounded-md shadow-md">
-        <img src={data?.image} className="w-full h-full" alt="this is image" />
+    <div className="md:flex flex-row rounded-md shadow-md">
+      <div className="p-5 md:flex flex-row rounded-md shadow-md w-[400px] h-[300px]">
+        <img src={data?.image} className="w-[300px] h-[250px]" alt="this is image" />
       </div>
-      <div className="w-80 h-80 rounded-md shadow-md p-5">
-        <h2>{data?.title}</h2>
-        <p className="overflow-hidden">{data?.description}</p>
+      <div className="overflow-y-auto overflow-x-autop-5 rounded-md shadow-md pb-10 px-[10px] md:w-full h-80">
+        <h2 className="mx-[10px] text-2xl font-bold">{data?.title}</h2>
+        <p className="p-2 m-2">{data?.description}</p>
       </div>
     </div>
   );
