@@ -27,8 +27,8 @@ const AddBlog = () => {
           onSubmit={handleSubmit}
           className="md:flex flex-col justify-center items-center bg-indigo-500"
         >
-          <div className="w-80 md:flex flex-col gap-5 m-5 p-5">
-            <div className="md:mx-[8%] w-[600px]">
+          <div className="w-80 md:flex flex-col gap-3 m-5 p-4">
+            <div className="mx-[25px] px-[35px]md:w-[400px]">
               <label htmlFor="title" className="px-[-40px]">
                 Title:
               </label>
