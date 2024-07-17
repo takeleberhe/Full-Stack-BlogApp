@@ -5,7 +5,7 @@ function App() {
   return (
     <>
       <Header />
-      <PageRouter className="my-20" />
+      <PageRouter/>
       <Footer />
     </>
   );
