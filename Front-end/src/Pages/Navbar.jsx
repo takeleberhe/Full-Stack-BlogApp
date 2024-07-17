@@ -3,7 +3,7 @@ import { AiOutlineRead } from "react-icons/ai";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoClose } from "react-icons/io5";
 import { Link } from "react-router-dom";
-  
+
 const Navbar = ({ user, logout }) => {
   let Links = [
     { name: "HOME", link: "/" },

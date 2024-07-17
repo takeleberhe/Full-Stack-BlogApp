@@ -4,7 +4,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 const Login = () => {
-  const { register,formState:{errors}, handleSubmit } = useForm({ mode: "all" });
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm({ mode: "all" });
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -19,11 +23,13 @@ const Login = () => {
       <div className="flex flex-col justify-center items-center bg-transparent">
         <form onSubmit={handleSubmit(handleSingIn)}>
           <div className="w-[350px] bg-indigo-800 rounded-md m-8 p-4 shadow-lg">
-            <label htmlFor="email" className="text-white text-xl">Email:</label>
+            <label htmlFor="email" className="text-white text-xl">
+              Email:
+            </label>
             <input
               type="email"
               name="email"
-               className="p-2 mt-5 outline-none rounded-md w-[300px] "
+              className="p-2 mt-5 outline-none rounded-md w-[300px] "
               {...register("email", {
                 required: "email required",
                 pattern: {
@@ -32,10 +38,11 @@ const Login = () => {
                 },
               })}
               placeholder="enter email"
-             
             />
-             <p className="text-red-700 mx-[20%]">{errors.email?.message}</p>
-            <label htmlFor="password" className="text-xl text-white">Password:</label>
+            <p className="text-red-700 mx-[20%]">{errors.email?.message}</p>
+            <label htmlFor="password" className="text-xl text-white">
+              Password:
+            </label>
             <input
               type="password"
               name="password"
@@ -53,8 +60,13 @@ const Login = () => {
               className="p-2 mt-6 outline-none rounded-md w-[300px]"
               placeholder="enter password"
             />
-             <p className="text-red-700 mx-[20%]">{errors.password?.message}</p>
-             <h2 className="text-yellow-600 mx-[10%]">Dont have Acount?<Link to="/signup" className="text-green-500 text-1xl">Create Acount</Link></h2>
+            <p className="text-red-700 mx-[20%]">{errors.password?.message}</p>
+            <h2 className="text-yellow-600 mx-[10%]">
+              Dont have Acount?
+              <Link to="/signup" className="text-green-500 text-1xl">
+                Create Acount
+              </Link>
+            </h2>
             <button
               className="p-2 m-2 ml-10 w-[150px] mx-[280%] px-[20px] rounded-full bg-green-700 hover:bg-yellow-700"
               type="submit"

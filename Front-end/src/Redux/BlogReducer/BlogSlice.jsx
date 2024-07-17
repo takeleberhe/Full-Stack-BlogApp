@@ -31,7 +31,7 @@ export const addBlog = createAsyncThunk("addBlog", async (body) => {
 /* Edit Blog Action creator */
 export const updateBlog = createAsyncThunk(
   "updateBlog",
-  async ({id,...body}) => {
+  async ({ id, ...body }) => {
     try {
       const res = await axios.put(
         `http://localhost:5000/BlogApi/blogs/update/${id}`,
@@ -40,9 +40,9 @@ export const updateBlog = createAsyncThunk(
           withCredentials: false,
         }
       );
-      const data=await res.data;
+      const data = await res.data;
       console.log(data);
-      return data
+      return data;
     } catch (error) {
       return console.log(error.message);
     }
@@ -67,7 +67,7 @@ export const BlogSlice = createSlice({
   name: "Blog",
   initialState: {
     isloading: false,
-    data:[],
+    data: [],
     error: false,
   },
   reducers: {},
@@ -101,8 +101,8 @@ export const BlogSlice = createSlice({
     });
     builder.addCase(updateBlog.fulfilled, (state, action) => {
       state.isloading = false;
-      state.data =state.data.filter((bl) =>
-        bl.id === action.payload.id ?action.payload : bl
+      state.data = state.data.filter((bl) =>
+        bl.id === action.payload.id ? action.payload : bl
       );
     });
     builder.addCase(updateBlog.rejected, (state) => {

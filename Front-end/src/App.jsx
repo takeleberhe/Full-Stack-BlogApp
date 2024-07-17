@@ -5,10 +5,9 @@ function App() {
   return (
     <>
       <Header />
-      <PageRouter/>
+      <PageRouter />
       <Footer />
     </>
   );
 }
-
 export default App;

@@ -23,11 +23,13 @@ const SignUp = () => {
           className="bg-indigo-800 w-[400px] rounded-lg p-4 m-6 shadow-3xl"
           onSubmit={handleSubmit(handleSignUp)}
         >
-          <label htmlFor="name" className="text-white text-md">Name:</label>
+          <label htmlFor="name" className="text-white text-md">
+            Name:
+          </label>
           <input
             type="text"
             name="name"
-              className="p-2 m-4 outline-none rounded-md w-[300px]"
+            className="p-2 m-4 outline-none rounded-md w-[300px]"
             {...register("name", {
               required: "username required!",
               minLength: {
@@ -40,16 +42,17 @@ const SignUp = () => {
                 message: "username must be at most 20 characters!",
               },
             })}
-          
             placeholder="enter your name"
           />
           <p className="text-red-700 mx-[20%]"> {errors.name?.message}</p>
 
-          <label htmlFor="email" className="text-white text-md">Email:</label>
+          <label htmlFor="email" className="text-white text-md">
+            Email:
+          </label>
           <input
             type="email"
             name="email"
-             className="p-2 m-4 outline-none rounded-md w-[300px]"
+            className="p-2 m-4 outline-none rounded-md w-[300px]"
             {...register("email", {
               required: "email required",
               pattern: {
@@ -57,26 +60,24 @@ const SignUp = () => {
                 message: "email must be valid",
               },
             })}
-           
             placeholder="eneter your email"
           />
           <p className="text-red-700 mx-[20%]">{errors.email?.message}</p>
-          <label htmlFor="password" className="text-white text-md">Password:</label>
+          <label htmlFor="password" className="text-white text-md">
+            Password:
+          </label>
           <input
             type="password"
             name="password"
             className="p-2 m-4 rounded-md outline-none w-[300px]"
             {...register("password", {
               required: "password required",
-              /* To check a password between 7 to 15 characters which contain at 
-                 least one numeric digit and a special character */
               pattern: {
                 value: /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/,
                 message:
                   "password must be 7-15characters and must include one numeric and one special character",
               },
             })}
-            
             placeholder="enter password"
           />
           <p className="text-red-700 mx-[20%]">{errors.password?.message}</p>

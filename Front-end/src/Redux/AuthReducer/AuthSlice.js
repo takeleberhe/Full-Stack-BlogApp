@@ -31,8 +31,7 @@ export const AuthSlice = createSlice({
     error: "",
   },
   /* add reducers  */
-  reducers: {
-  },
+  reducers: {},
   /* add extra reducers for asynchrounous data fetching */
   extraReducers: (builder) => {
     /* SignIn */
