@@ -59,7 +59,5 @@ export const AuthSlice = createSlice({
     });
   },
 });
-/* export the action types to the external */
-export const { addToken, adduser, logout } = AuthSlice.actions;
 /* export the reducer to external use */
 export default AuthSlice.reducer;

@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react";
-//import Navbar from "../Pages/Navbar";
-//import NavbarTest from "../Pages/NavbarTest";
 import Navbar from "../Pages/Navbar"
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
