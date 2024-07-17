@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -18,7 +19,7 @@ connectDB();
 /*Use NodeJs builtIn Middlewares here*/
 
 const app = express();
-app.use(cors({ credentials: true, origin: "http://localhost:5173" })); //allow port 5173 client react app runs which is the allowed server to access our back-end server!
+app.use(cors({ credentials: true, origin:process.env.UI})); //allow port 5173 client react app runs which is the allowed server to access our back-end server!
 app.use(bodyParser.urlencoded({ extended:true }));
 app.use(cookieParser());
 app.use(express.json());
