@@ -15,7 +15,6 @@ const { connectDB } = require("./Dbconnection/Dbconnection");
 connectDB();
 
 /*Use NodeJs builtIn Middlewares here*/
-
 const app = express();
 app.use(cors({ credentials: true, origin:process.env.UI})); 
 app.use(cookieParser());

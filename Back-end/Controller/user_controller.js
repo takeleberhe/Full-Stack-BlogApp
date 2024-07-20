@@ -1,6 +1,5 @@
 require("dotenv").config();
 const User = require("../Model/User");
-//import Profile from "../Model/Profile";
 const bcrypt = require("bcryptjs");
 const { response } = require("express");
 const jwt = require("jsonwebtoken");
@@ -120,7 +119,6 @@ const getAllusers = async (req, res) => {
   }
 };
 
-
 /* Delete user */
 const deleteUser = async (req, res, next) => {
   const id = req.params.id;
@@ -202,7 +200,7 @@ const logout = async (req, res, next) => {
       return res.status(403).json({ message: " authentication failed! " });
     }
     res.clearCookie("${user._id}"); //clear cookie from browser
-    req.cookies["${user._id}"] = "";//clear cookie from the header
+    req.cookies["${user._id}"] = ""; //clear cookie from the header
     return res
       .status(200)
       .json({ message: "you are successfully logged out!" });
