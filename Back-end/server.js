@@ -16,7 +16,7 @@ connectDB();
 
 /*Use NodeJs builtIn Middlewares here*/
 const app = express();
-app.use(cors({ credentials: true, origin:process.env.UI})); 
+app.use(cors({ credentials: true, origin: process.env.UI }));
 app.use(cookieParser());
 app.use(express.json());
 app.use(morgan("tiny"));
@@ -28,6 +28,9 @@ app.use("/BlogApi/users", userRouter);
 app.use("/BlogApi/blogs", blogRouter);
 
 const port = process.env.PORT || 3000;
-app.listen(port, () => {
-  console.log(`server is listening at port${port}`);
-});
+if (port) {
+  app.listen(port, () => {
+    console.log(`server is listening at port${port}`);
+  });
+}
+module.exports = app;

@@ -1,0 +1,7 @@
+{
+   "rewrite":[{
+       "source":"/Back-end/(.*)",
+       "destination":"/Back-end"
+   }
+]
+}

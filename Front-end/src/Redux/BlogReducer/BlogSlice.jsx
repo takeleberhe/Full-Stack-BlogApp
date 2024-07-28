@@ -52,7 +52,7 @@ export const updateBlog = createAsyncThunk(
 /* Delete Blog  Action creator */
 export const deleteBlog = createAsyncThunk("deleteBlog", async ({ id }) => {
   try {
-    const res = await axios.get(
+    const res = await axios.delete(
       `http://localhost:5000/BlogApi/blogs/delete/${id}`,
       {
         withCredentials: false,
